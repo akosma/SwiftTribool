@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Swift Tribool by akosma</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Swift Tribool</h1>
+        <h2>3-state boolean library for Swift, inspired in Boost.Tribool</h2>
+        <a href="https://github.com/akosma/SwiftTribool" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="swift-tribool" class="anchor" href="#swift-tribool" aria-hidden="true"><span class="octicon octicon-link"></span></a>Swift Tribool</h1>
+
+<p>This library provides a Swift implementation of a tri-state boolean,
+inspired by the <a href="http://www.boost.org/doc/libs/1_59_0/doc/html/tribool.html">Boost.Tribool project</a>.</p>
+
+<p>The equality and operation tables of this enum are 100% compliant with
+the rules specified in the documentation of Boost.Tribool; in contrast,
+this library does not include any I/O functionality.</p>
+
+<p>This project has been created with Xcode 7, for iOS 9+ and Swift 2+.</p>
+
+<h2>
+<a id="unit-tests" class="anchor" href="#unit-tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Unit Tests</h2>
+
+<p>The library is provided with unit tests which also show how to use it.</p>
+
+<h2>
+<a id="code-examples" class="anchor" href="#code-examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Code Examples</h2>
+
+<p>The following examples are also available in the bundled playground
+file:</p>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">import</span> <span class="pl-c1">Tribool</span>
+
+<span class="pl-c">// Tribool values have three states</span>
+<span class="pl-k">let</span> f <span class="pl-k">=</span> Tribool<span class="pl-k">.</span>False
+<span class="pl-k">let</span> t <span class="pl-k">=</span> Tribool<span class="pl-k">.</span>True
+<span class="pl-k">let</span> i <span class="pl-k">=</span> Tribool<span class="pl-k">.</span>Indeterminate
+
+<span class="pl-c">// You can also use numbers and strings to create them</span>
+<span class="pl-k">let</span> f2 <span class="pl-k">=</span> Tribool(<span class="pl-c1">0</span>)
+<span class="pl-k">let</span> t2 <span class="pl-k">=</span> Tribool(<span class="pl-c1">1</span>)
+<span class="pl-k">let</span> i2 <span class="pl-k">=</span> Tribool(<span class="pl-c1">2</span>)
+
+<span class="pl-c">// Or strings</span>
+<span class="pl-k">let</span> f3 <span class="pl-k">=</span> Tribool(<span class="pl-s"><span class="pl-pds">"</span>false<span class="pl-pds">"</span></span>)
+<span class="pl-k">let</span> t3 <span class="pl-k">=</span> Tribool(<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span>)
+<span class="pl-k">let</span> i3 <span class="pl-k">=</span> Tribool(<span class="pl-s"><span class="pl-pds">"</span>indeterminate<span class="pl-pds">"</span></span>)
+
+<span class="pl-c">// Actually any string or number will give you indeterminates</span>
+<span class="pl-k">let</span> i4 <span class="pl-k">=</span> Tribool(<span class="pl-c1">234</span>)
+<span class="pl-k">let</span> i5 <span class="pl-k">=</span> Tribool(<span class="pl-s"><span class="pl-pds">"</span>wat<span class="pl-pds">"</span></span>)
+
+<span class="pl-c">// Or booleans</span>
+<span class="pl-k">let</span> f4 <span class="pl-k">=</span> <span class="pl-c1">false</span><span class="pl-k">.</span>triboolValue
+<span class="pl-k">let</span> f5 <span class="pl-k">=</span> Tribool(<span class="pl-c1">false</span>)
+<span class="pl-k">let</span> t4 <span class="pl-k">=</span> <span class="pl-c1">true</span><span class="pl-k">.</span>triboolValue
+<span class="pl-k">let</span> t5 <span class="pl-k">=</span> Tribool(<span class="pl-c1">true</span>)
+
+<span class="pl-c">// All of the values above are equivalent</span>
+<span class="pl-k">let</span> b1 <span class="pl-k">:</span> <span class="pl-c1">Bool</span> <span class="pl-k">=</span> (f <span class="pl-k">==</span> f3)
+<span class="pl-k">let</span> b2 <span class="pl-k">:</span> <span class="pl-c1">Bool</span> <span class="pl-k">=</span> (t <span class="pl-k">==</span> t4)
+<span class="pl-k">let</span> b3 <span class="pl-k">:</span> <span class="pl-c1">Bool</span> <span class="pl-k">=</span> (t <span class="pl-k">==</span> <span class="pl-c1">true</span>)
+<span class="pl-k">let</span> b4 <span class="pl-k">:</span> <span class="pl-c1">Bool</span> <span class="pl-k">=</span> (t <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span>)
+<span class="pl-k">let</span> b5 <span class="pl-k">:</span> <span class="pl-c1">Bool</span> <span class="pl-k">=</span> (i <span class="pl-k">==</span> i5)
+<span class="pl-k">let</span> b6 <span class="pl-k">:</span> <span class="pl-c1">Bool</span> <span class="pl-k">=</span> (i <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">"</span>indeterminate<span class="pl-pds">"</span></span>)
+
+<span class="pl-c">// This is False</span>
+f <span class="pl-k">&amp;&amp;</span> t
+
+<span class="pl-c">// This is True</span>
+f <span class="pl-k">||</span> t
+
+<span class="pl-c">// This is False</span>
+<span class="pl-k">!</span>t
+
+<span class="pl-c">// This is True</span>
+<span class="pl-k">!</span>f
+
+<span class="pl-c">// Complex operations follow the usual priority rules</span>
+<span class="pl-c">// and accept strings or boolean representations alike</span>
+<span class="pl-c1">print</span>(<span class="pl-s"><span class="pl-pds">"</span>false<span class="pl-pds">"</span></span> <span class="pl-k">||</span> <span class="pl-k">!</span><span class="pl-c1">true</span> <span class="pl-k">&amp;&amp;</span> i)
+
+<span class="pl-c">// Indeterminate values have weird properties</span>
+<span class="pl-k">!</span>i
+i <span class="pl-k">&amp;&amp;</span> t
+i <span class="pl-k">||</span> f
+<span class="pl-k">let</span> equal1 <span class="pl-k">:</span> Tribool <span class="pl-k">=</span> (i <span class="pl-k">!=</span> f)
+<span class="pl-k">let</span> equal2 <span class="pl-k">:</span> Tribool <span class="pl-k">=</span> (t <span class="pl-k">==</span> i)</pre></div>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>This library is available through a BSD license. See the <code>LICENSE</code> file
+for details.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/akosma/SwiftTribool/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/akosma/SwiftTribool/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/akosma/SwiftTribool"></a> is maintained by <a href="https://github.com/akosma">akosma</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
