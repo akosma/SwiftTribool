@@ -18,7 +18,7 @@ The library is provided with unit tests which also show how to use it.
 The following examples are also available in the bundled playground
 file:
 
-```
+```swift
 import Tribool
 
 // Tribool values have three states
